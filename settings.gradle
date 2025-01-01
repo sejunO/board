@@ -4,4 +4,3 @@ include 'board-internal-api'
 include 'board-core'
 include 'board-datasource:db'
 findProject(':board-datasource:db')?.name = 'db'
-
