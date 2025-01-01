@@ -43,8 +43,8 @@ subprojects {
     }
 
     dependencies {
+        compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter'
-        implementation files('libs/core-utils-1.0.0.jar')
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
