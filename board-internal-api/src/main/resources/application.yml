@@ -1,0 +1,13 @@
+spring.application.name: board
+spring.profiles.active: local
+
+spring:
+  config:
+    import:
+      - db.yml
+  web:
+    resources:
+      add-mappings: false
+
+---
+spring.config.activate.on-profile: local
