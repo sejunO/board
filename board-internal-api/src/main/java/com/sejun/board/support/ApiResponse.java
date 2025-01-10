@@ -1,18 +1,8 @@
 package com.sejun.board.support;
 
-public class ApiResponse<T> {
+import lombok.Getter;
 
-    private final ResultType resultType;
-
-    private final T data;
-
-    private final String errorMessage;
-
-    public ApiResponse(ResultType resultType, T data, String errorMessage) {
-        this.resultType = resultType;
-        this.data = data;
-        this.errorMessage = errorMessage;
-    }
+public record ApiResponse<T>(ResultType resultType, T data, String errorMessage) {
 
     public static ApiResponse success() {
         return new ApiResponse(ResultType.SUCCESS, null, null);

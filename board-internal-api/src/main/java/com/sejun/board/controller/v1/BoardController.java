@@ -1,19 +1,32 @@
 package com.sejun.board.controller.v1;
 
+import com.sejun.board.domain.board.Board;
+import com.sejun.board.domain.board.BoardService;
 import com.sejun.board.support.ApiResponse;
+import com.sejun.board.support.ResultType;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class BoardController {
 
+    private final BoardService boardservice;
     @GetMapping("/v1/boards")
-    public ApiResponse<Object> boards(
-        @RequestParam Long offset,
-        @RequestParam Long limit
+    public ApiResponse<List<Board>> boards(
+        @RequestParam(required = false, defaultValue = "0") Long offset,
+        @RequestParam(defaultValue = "10") int limit
     ) {
-        return null;
+        return ApiResponse.success(boardservice.find(offset, limit));
+    }
+
+    @PostMapping("/v1/boards")
+    public ApiResponse<Long> boards(@RequestBody Board board) {
+        return ApiResponse.success(boardservice.save(board));
     }
 }

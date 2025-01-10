@@ -11,6 +11,12 @@ spring:
 spring.config.activate.on-profile: local
 
 spring:
+  datasource:
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: HikariCP
   jpa:
     hibernate:
       ddl-auto: create

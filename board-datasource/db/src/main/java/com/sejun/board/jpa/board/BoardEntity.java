@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 
 @Getter
 @Entity
@@ -21,7 +22,7 @@ public class BoardEntity extends BaseEntity {
     }
 
     public void updateContent(String newContent) {
-        if (newContent == null || newContent.isBlank()) {
+        if (!StringUtils.hasText(newContent)) {
             throw new IllegalArgumentException("Content cannot be empty");
         }
         this.content = newContent;
