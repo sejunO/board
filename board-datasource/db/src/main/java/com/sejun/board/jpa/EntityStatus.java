@@ -1,2 +1,5 @@
-package com.sejun.board.jpa;public enum EntityStatus {
+package com.sejun.board.jpa;
+
+public enum EntityStatus {
+    ACTIVE, DELETED
 }

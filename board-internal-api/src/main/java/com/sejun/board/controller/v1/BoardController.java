@@ -1,5 +1,6 @@
 package com.sejun.board.controller.v1;
 
+import com.sejun.board.controller.v1.request.BoardCreateRequest;
 import com.sejun.board.domain.board.Board;
 import com.sejun.board.domain.board.BoardService;
 import com.sejun.board.support.ApiResponse;
@@ -26,7 +27,11 @@ public class BoardController {
     }
 
     @PostMapping("/v1/boards")
-    public ApiResponse<Long> boards(@RequestBody Board board) {
-        return ApiResponse.success(boardservice.save(board));
+    public ApiResponse<Long> createBoard(@RequestBody BoardCreateRequest request) {
+        return ApiResponse.success(boardservice.create(
+                Board.builder()
+                        .title(request.getTitle())
+                        .content(request.getContent())
+                        .build()));
     }
 }

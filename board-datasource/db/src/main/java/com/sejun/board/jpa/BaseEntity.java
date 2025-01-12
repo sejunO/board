@@ -25,4 +25,6 @@ public abstract class BaseEntity {
     @Column(insertable = false)
     private LocalDateTime updatedAt;
 
+    @Enumerated(EnumType.STRING)
+    private EntityStatus entityStatus = EntityStatus.ACTIVE;
 }

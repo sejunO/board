@@ -8,4 +8,6 @@ public interface BoardRepository {
     List<Board> find(Long offset, int limit);
 
     Long save(Board board);
+
+
 }

@@ -1,2 +1,17 @@
-package com.sejun.board.domain.board;public class BoardProcessor {
+package com.sejun.board.domain.board;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class BoardProcessor {
+
+    private final BoardRepository boardRepository;
+
+    public BoardProcessor(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
+
+    public Long save(Board board) {
+        return boardRepository.save(board);
+    }
 }

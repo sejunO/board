@@ -5,16 +5,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class BoardService {
 
-    private final BoardRepository boardRepository;
+    private final BoardReader boardReader;
+    private final BoardProcessor boardProcessor;
 
-    public List<Board> find(Long offset, int limit) {
-        return boardRepository.find(offset, limit);
+    public BoardService(BoardReader boardReader, BoardProcessor boardProcessor) {
+        this.boardReader = boardReader;
+        this.boardProcessor = boardProcessor;
     }
 
-    public Long save(Board board) {
-        return boardRepository.save(board);
+    public List<Board> find(Long offset, int limit) {
+        return boardReader.find(offset, limit);
+    }
+
+    public Long create(Board board) {
+        return boardProcessor.save(board);
     }
 }
