@@ -4,18 +4,21 @@ import com.sejun.board.domain.board.Board;
 import com.sejun.board.domain.board.BoardRepository;
 import com.sejun.board.domain.board.Cursor;
 import com.sejun.board.domain.board.SortType;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-@RequiredArgsConstructor
 public class BoardCoreRepository implements BoardRepository {
 
     private final BoardJpaRepository boardJpaRepository;
     private final BoardQueryRepository BoardQueryRepository;
+
+    public BoardCoreRepository(BoardJpaRepository boardJpaRepository, BoardQueryRepository boardQueryRepository) {
+        this.boardJpaRepository = boardJpaRepository;
+        BoardQueryRepository = boardQueryRepository;
+    }
 
     @Override
     public List<Board> find(Cursor cursor) {
