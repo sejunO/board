@@ -2,8 +2,6 @@ package com.sejun.board.domain.board;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class BoardProcessor {
 

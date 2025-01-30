@@ -13,7 +13,7 @@ public class BoardReader {
         this.boardRepository = boardRepository;
     }
 
-    public List<Board> find(Long offset, int limit) {
-        return boardRepository.find(offset, limit);
+    public List<Board> find(Cursor cursor) {
+        return boardRepository.find(cursor);
     }
 }

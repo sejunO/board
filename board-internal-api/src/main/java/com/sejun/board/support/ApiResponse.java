@@ -1,7 +1,8 @@
 package com.sejun.board.support;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record ApiResponse<T>(ResultType resultType, T data, String errorMessage) {
 
     public static ApiResponse success() {

@@ -12,6 +12,7 @@ spring.config.activate.on-profile: local
 
 spring:
   datasource:
+    url: jdbc:h2:mem:test
     hikari:
       minimum-idle: 5
       maximum-pool-size: 10

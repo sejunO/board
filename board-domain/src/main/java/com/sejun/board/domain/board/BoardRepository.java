@@ -1,11 +1,12 @@
 package com.sejun.board.domain.board;
 
-import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface BoardRepository {
-    List<Board> find(Long offset, int limit);
+    List<Board> find(Cursor cursor);
 
     Long save(Board board);
 
