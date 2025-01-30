@@ -27,4 +27,12 @@ public abstract class BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private EntityStatus entityStatus = EntityStatus.ACTIVE;
+
+    public void active() {
+        entityStatus = EntityStatus.ACTIVE;
+    }
+
+    public void delete() {
+        entityStatus = EntityStatus.DELETED;
+    }
 }

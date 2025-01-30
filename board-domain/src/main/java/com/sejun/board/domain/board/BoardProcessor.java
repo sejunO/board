@@ -2,6 +2,8 @@ package com.sejun.board.domain.board;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class BoardProcessor {
 
@@ -13,5 +15,9 @@ public class BoardProcessor {
 
     public Long save(Board board) {
         return boardRepository.save(board);
+    }
+
+    public Long removeBoard(Board board) {
+        return boardRepository.removeBoard(board);
     }
 }

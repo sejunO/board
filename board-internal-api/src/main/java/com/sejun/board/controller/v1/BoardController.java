@@ -4,7 +4,7 @@ import com.sejun.board.controller.v1.request.BoardCreateRequest;
 import com.sejun.board.domain.board.Board;
 import com.sejun.board.domain.board.BoardService;
 import com.sejun.board.support.ApiResponse;
-import com.sejun.board.support.ResultType;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class BoardController {
 
     @PostMapping("/v1/boards")
     public ApiResponse<Long> createBoard(@RequestBody BoardCreateRequest request) {
-        return ApiResponse.success(boardservice.create(
+        return ApiResponse.success(boardservice.createBoard(
                 Board.builder()
                         .title(request.getTitle())
                         .content(request.getContent())

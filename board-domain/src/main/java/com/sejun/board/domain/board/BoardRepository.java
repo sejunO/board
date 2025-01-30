@@ -9,5 +9,5 @@ public interface BoardRepository {
 
     Long save(Board board);
 
-
+    Long removeBoard(Board board);
 }

@@ -30,4 +30,13 @@ public class BoardCoreRepository implements BoardRepository {
             .content(board.getContent())
             .build()).getId();
     }
+
+    @Override
+    public Long removeBoard(Board board) {
+        BoardEntity findBoardEntity = boardJpaRepository.findById(board.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+
+        findBoardEntity.delete();
+        return findBoardEntity.getId();
+    }
 }

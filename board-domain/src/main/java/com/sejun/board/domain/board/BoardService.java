@@ -1,7 +1,7 @@
 package com.sejun.board.domain.board;
 
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +19,11 @@ public class BoardService {
         return boardReader.find(offset, limit);
     }
 
-    public Long create(Board board) {
+    public Long createBoard(Board board) {
         return boardProcessor.save(board);
+    }
+
+    public Long removeBoard(Board board) {
+        return boardProcessor.removeBoard(board);
     }
 }
