@@ -2,7 +2,6 @@ package com.sejun.board.controller.v1;
 
 import com.sejun.board.controller.v1.request.UserSignUpRequest;
 import com.sejun.board.domain.User.UserService;
-import com.sejun.board.domain.board.Cursor;
 import com.sejun.board.support.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
