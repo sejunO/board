@@ -19,6 +19,14 @@ public class BoardService {
         return boardReader.find(cursor);
     }
 
+    public Board find(Long boardId) {
+        return boardReader.find(boardId);
+    }
+
+    public Board modify(Long boardId, BoardContent boardContent) {
+        return boardProcessor.modify(boardId, boardContent);
+    }
+
     public Long createBoard(Board board) {
         return boardProcessor.save(board);
     }

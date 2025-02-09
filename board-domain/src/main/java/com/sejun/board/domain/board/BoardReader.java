@@ -16,4 +16,6 @@ public class BoardReader {
     public List<Board> find(Cursor cursor) {
         return boardRepository.find(cursor);
     }
+
+    public Board find(Long boardId) {return boardRepository.find(boardId);}
 }

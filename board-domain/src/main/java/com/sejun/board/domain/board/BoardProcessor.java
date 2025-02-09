@@ -15,6 +15,10 @@ public class BoardProcessor {
         return boardRepository.save(board);
     }
 
+    public Board modify(Long boardId, BoardContent boardContent) {
+        return boardRepository.modify(boardId, boardContent);
+    }
+
     public Long removeBoard(Board board) {
         return boardRepository.removeBoard(board);
     }

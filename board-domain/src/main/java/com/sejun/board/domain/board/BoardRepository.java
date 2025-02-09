@@ -8,7 +8,11 @@ import java.util.List;
 public interface BoardRepository {
     List<Board> find(Cursor cursor);
 
+    Board find(Long boardId);
+
     Long save(Board board);
+
+    Board modify(Long boardId, BoardContent boardContent);
 
     Long removeBoard(Board board);
 }
