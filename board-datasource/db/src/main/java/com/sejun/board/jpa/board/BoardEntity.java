@@ -1,6 +1,7 @@
 package com.sejun.board.jpa.board;
 
 import com.sejun.board.domain.board.Board;
+import com.sejun.board.domain.board.BoardContent;
 import com.sejun.board.jpa.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -22,14 +23,31 @@ public class BoardEntity extends BaseEntity {
         this.content = content;
     }
 
-    public void updateContent(String newContent) {
+    public void update(BoardContent boardContent) {
+        updateTitle(boardContent.getTitle());
+        updateContent(boardContent.getContent());
+    };
+    private void updateContent(String newContent) {
         if (!StringUtils.hasText(newContent)) {
             throw new IllegalArgumentException("Content cannot be empty");
         }
         this.content = newContent;
     }
 
+    private void updateTitle(String newTitle) {
+        if (!StringUtils.hasText(newTitle)) {
+            throw new IllegalArgumentException("Content cannot be empty");
+        }
+        this.title = newTitle;
+    }
+
     public Board toBoard() {
-        return new Board(this.getId(), this.title, this.content);
+        return Board.builder()
+                .id(getId())
+                .title(getTitle())
+                .content(getContent())
+                .createdAt(getCreatedAt())
+                .updatedAt(getUpdatedAt())
+                .build();
     }
 }

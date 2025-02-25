@@ -4,10 +4,12 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.time.Duration;
+import java.util.Collection;
 import java.util.Date;
 
 @Component
@@ -32,7 +34,7 @@ public class JwtTokenProvider {
      * @param roles
      * @return
      */
-    public String createToken(String username, String roles) {
+    public String createToken(String username, Collection<? extends GrantedAuthority> roles) {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles); // 사용자 역할 등 추가 정보 삽입
 
@@ -58,10 +60,8 @@ public class JwtTokenProvider {
                     .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token);
-            // 만료 시간 확인
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            // 유효하지 않은 토큰인 경우 false 반환
             return false;
         }
     }

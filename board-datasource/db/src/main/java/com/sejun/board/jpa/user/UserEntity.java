@@ -1,5 +1,6 @@
-package com.sejun.board.jpa.User;
+package com.sejun.board.jpa.user;
 
+import com.sejun.board.domain.User.User;
 import com.sejun.board.jpa.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -16,6 +17,8 @@ public class UserEntity extends BaseEntity {
     private String nick;
     private String email;
 
+    private String password;
+
     public String getName() {
         return name;
     }
@@ -26,5 +29,17 @@ public class UserEntity extends BaseEntity {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User toUser() {
+        return User.builder()
+                .id(getId())
+                .name(name)
+                .password(password)
+                .build();
     }
 }
