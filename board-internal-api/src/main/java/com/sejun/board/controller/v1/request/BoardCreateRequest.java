@@ -6,6 +6,8 @@ public record BoardCreateRequest(
         @NotBlank
         String title,
         @NotBlank
-        String content
+        String content,
+        
+        Long userId
 ) {
 }

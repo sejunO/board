@@ -3,6 +3,7 @@ package com.sejun.board.jpa.board;
 import com.sejun.board.domain.board.Board;
 import com.sejun.board.domain.board.BoardContent;
 import com.sejun.board.jpa.BaseEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -14,36 +15,44 @@ import org.springframework.util.StringUtils;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BoardEntity extends BaseEntity {
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String content;
-
+    
+    private Long userId;
+    
     @Builder
     public BoardEntity(String title, String content) {
         this.title = title;
         this.content = content;
     }
-
+    
     public void update(BoardContent boardContent) {
         updateTitle(boardContent.getTitle());
         updateContent(boardContent.getContent());
-    };
+    }
+    
+    ;
+    
     private void updateContent(String newContent) {
         if (!StringUtils.hasText(newContent)) {
             throw new IllegalArgumentException("Content cannot be empty");
         }
         this.content = newContent;
     }
-
+    
     private void updateTitle(String newTitle) {
         if (!StringUtils.hasText(newTitle)) {
             throw new IllegalArgumentException("Content cannot be empty");
         }
         this.title = newTitle;
     }
-
+    
     public Board toBoard() {
         return Board.builder()
                 .id(getId())
+                .userId(getUserId())
                 .title(getTitle())
                 .content(getContent())
                 .createdAt(getCreatedAt())
