@@ -1,5 +1,5 @@
 dependencies {
-    implementation project(':board-domain')
+    implementation project(':board-core')
     implementation project(':web')
     runtimeOnly project(":board-datasource:db")
     implementation project(":support:logging")
