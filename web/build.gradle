@@ -1,5 +1,6 @@
 dependencies {
     implementation project(':board-core')
+    implementation project(':board-internal-api')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     api 'org.springframework.boot:spring-boot-starter-security'

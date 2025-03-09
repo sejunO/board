@@ -9,51 +9,57 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
+    private final Long userId;
     private final String username;
     private final String password;
     private final List<String> roles;
-
-    public UserPrincipal(String username, String password, List<String> roles) {
+    
+    public UserPrincipal(Long userId, String username, String password, List<String> roles) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.roles = roles;
     }
-
-
+    
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .collect(Collectors.toList());
     }
-
+    
     @Override
     public String getPassword() {
         return password;
     }
-
+    
     @Override
     public String getUsername() {
         return username;
     }
-
+    
     @Override
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();
     }
-
+    
     @Override
     public boolean isAccountNonLocked() {
         return UserDetails.super.isAccountNonLocked();
     }
-
+    
     @Override
     public boolean isCredentialsNonExpired() {
         return UserDetails.super.isCredentialsNonExpired();
     }
-
+    
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+    
+    public Long getUserId() {
+        return userId;
     }
 }

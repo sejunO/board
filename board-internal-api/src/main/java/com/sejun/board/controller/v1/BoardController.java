@@ -38,6 +38,7 @@ public class BoardController {
     public ApiResponse<Long> createBoard(@RequestBody @Valid BoardCreateRequest request) {
         return ApiResponse.success(boardservice.createBoard(
                 Board.builder()
+                        .userId(request.userId())
                         .title(request.title())
                         .content(request.content())
                         .build()));
