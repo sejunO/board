@@ -1,6 +1,6 @@
 dependencies {
     implementation project(':board-core')
-    implementation project(':web')
+    runtimeOnly project(':web')
     runtimeOnly project(":board-datasource:db")
     implementation project(":support:logging")
     implementation 'org.springframework.boot:spring-boot-starter-web'

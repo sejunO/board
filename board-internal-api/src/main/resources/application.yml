@@ -6,10 +6,14 @@ spring:
     import:
       - db.yml
       - logging.yml
-      - web.yml
   web:
     resources:
       add-mappings: false
 
 ---
 spring.config.activate.on-profile: local
+
+
+jwt:
+  secret: rkGU45258GGhiolLO2465TFY5345kGU4525very-secure-secret-key
+  expiration: 30m

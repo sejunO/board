@@ -1,20 +1,19 @@
 package com.sejun.board.support;
 
-import com.sejun.board.error.ErrorCode;
 
 public enum WebErrorType {
-    USER_NOT_AUTHORIZED(ErrorCode.E1000, "로그인이 필요합니다");
+    USER_NOT_AUTHORIZED(WebErrorCode.WE100, "로그인이 필요합니다");
     
     
-    private final ErrorCode errorCode;
+    private final WebErrorCode errorCode;
     private final String message;
     
-    WebErrorType(ErrorCode errorCode, String message) {
+    WebErrorType(WebErrorCode errorCode, String message) {
         this.errorCode = errorCode;
         this.message = message;
     }
     
-    public ErrorCode getErrorCode() {
+    public WebErrorCode getErrorCode() {
         return errorCode;
     }
     

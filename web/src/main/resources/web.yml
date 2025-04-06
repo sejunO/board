@@ -1,3 +1,0 @@
-jwt:
-  secret: rkGU45258GGhiolLO2465TFY5345kGU4525very-secure-secret-key
-  expiration: 30m
