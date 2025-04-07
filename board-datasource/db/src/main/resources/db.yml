@@ -1,4 +1,10 @@
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/board?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: dev1004
+    password: 1q2w3e4r
+
   jpa:
     open-in-view: false
     hibernate:
@@ -11,13 +17,6 @@ spring:
 spring.config.activate.on-profile: local
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:test
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 10
-      auto-commit: true
-      pool-name: HikariCP
   jpa:
     hibernate:
       ddl-auto: create

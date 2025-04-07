@@ -5,6 +5,7 @@ import com.sejun.board.domain.board.BoardContent;
 import com.sejun.board.jpa.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import org.springframework.util.StringUtils;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "board")
 public class BoardEntity extends BaseEntity {
     @Column(nullable = false)
     private String title;

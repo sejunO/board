@@ -10,19 +10,19 @@ public class BoardContent {
     private String content;
     private LocalDateTime createAt;
     private LocalDateTime updatedAt;
-
+    
     public String getTitle() {
         return title;
     }
-
+    
     public String getContent() {
         return content;
     }
-
+    
     public LocalDateTime getCreateAt() {
         return createAt;
     }
-
+    
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
