@@ -33,7 +33,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             FormLoginRequest loginRequest = new ObjectMapper().readValue(request.getInputStream(), FormLoginRequest.class);
             
             return getAuthenticationManager().authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password(), new ArrayList<>())
+                    new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password(), new ArrayList<>())
             );
             
         } catch (IOException e) {
