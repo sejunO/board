@@ -35,10 +35,7 @@ public class BoardCoreRepository implements BoardRepository {
 
     @Override
     public Long save(Board board) {
-        return boardJpaRepository.save(BoardEntity.builder()
-            .title(board.getTitle())
-            .content(board.getContent())
-            .build()).getId();
+        return boardJpaRepository.save(BoardEntity.create(board.getTitle(), board.getContent(), board.getUserId())).getId();
     }
 
     @Override
