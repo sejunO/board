@@ -1,8 +1,15 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management'
+    id 'java'
+}
+
 dependencies {
     implementation project(':board-core')
     implementation project(':web')
-    runtimeOnly project(":board-datasource:db")
-    implementation project(":support:logging")
+    implementation project(':support:logging')
+    implementation project(':board-datasource:db')
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 }

@@ -1,20 +1,11 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.4.0'
     id 'io.spring.dependency-management' version '1.1.6'
 }
-
-bootJar.enabled = false
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
     }
 }
 
@@ -23,19 +14,21 @@ repositories {
 }
 
 subprojects {
-    group 'com.example'
+    group 'com.sejun'
     version '0.0.1-SNAPSHOT'
-    sourceCompatibility = '17'
 
-    apply plugin: 'java'
     apply plugin: 'java-library'
-    apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.0"
         }
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     repositories {
@@ -43,8 +36,10 @@ subprojects {
     }
 
     dependencies {
-        annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     test {
