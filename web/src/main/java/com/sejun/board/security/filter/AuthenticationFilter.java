@@ -7,6 +7,8 @@ import com.sejun.board.security.jwt.JwtTokenProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -14,8 +16,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     
@@ -42,11 +47,28 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
     
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         String username = ((UserPrincipal) authResult.getPrincipal()).getUsername();
         Collection<? extends GrantedAuthority> authorities = ((UserPrincipal) authResult.getPrincipal()).getAuthorities();
         
         String token = jwtTokenProvider.createToken(username, authorities);
-        response.addHeader("Authorization", token);
+        ResponseCookie cookie = ResponseCookie.from("access_token", token)
+                .httpOnly(true)
+                .secure(false) // https true
+                .path("/")
+                .sameSite("Lax")
+                .maxAge(Duration.ofMinutes(30))
+                .build();
+        
+        response.setHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+        
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        
+        Map<String, Object> body = new HashMap<>();
+        body.put("resultType", "SUCCESS");
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        response.getWriter().write(objectMapper.writeValueAsString(body));
     }
 }

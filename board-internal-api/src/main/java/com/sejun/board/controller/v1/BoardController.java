@@ -37,11 +37,7 @@ public class BoardController {
     @PostMapping("/v1/boards")
     public ApiResponse<Long> createBoard(@RequestBody @Valid BoardCreateRequest request) {
         return ApiResponse.success(boardservice.createBoard(
-                Board.builder()
-                        .userId(request.userId())
-                        .title(request.title())
-                        .content(request.content())
-                        .build()));
+                Board.create(request.userId(), request.title(), request.content())));
     }
     
     @GetMapping("/v1/boards/{boardId}")
@@ -52,9 +48,9 @@ public class BoardController {
     
     @PutMapping("/v1/boards/{boardId}")
     public ApiResponse<DefaultIdResponse> modifyBoard(
-            @PathVariable("boardId") long boardId,
+            @PathVariable("boardId") Long boardId,
             @RequestBody @Valid ModifyBoardRequest request) {
-        Board modifyBoard = boardservice.modify(boardId, request.toContent());
+        Board modifyBoard = boardservice.modify(new UserWithTargetKey(request.userId(), boardId), request.toContent());
         return ApiResponse.success(DefaultIdResponse.of(modifyBoard));
     }
 }

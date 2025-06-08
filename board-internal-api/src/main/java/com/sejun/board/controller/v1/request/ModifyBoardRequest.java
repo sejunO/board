@@ -4,6 +4,7 @@ import com.sejun.board.domain.board.BoardContent;
 
 @AtLeastOneNotBlank
 public record ModifyBoardRequest(
+        Long userId,
         String title,
         String content) {
     public BoardContent toContent() {

@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 @Component
 public class UserPrincipalService implements UserDetailsService {
-
+    
     private final UserRepository userRepository;
-
+    
     public UserPrincipalService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User findUser = userRepository.findByUsername(username);

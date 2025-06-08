@@ -16,6 +16,7 @@ dependencies {
 
     implementation project(':board-core')
 
+    runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'com.h2database:h2'
 }
 
